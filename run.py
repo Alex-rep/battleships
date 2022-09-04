@@ -21,7 +21,7 @@ class PlayerBoard:
         """
         for index in range(4):
 
-            ship_row = random.randint(0, 3)
+            ship_row = index
             ship_column = random.randint(0, 3)
             ship = [ship_row, ship_column]
             self.ships.append(ship)
