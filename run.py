@@ -21,8 +21,8 @@ class PlayerBoard:
         """
         for index in range(4):
 
-            ship_row = random.randint(0, 4)
-            ship_column = random.randint(0, 4)
+            ship_row = random.randint(0, 3)
+            ship_column = random.randint(0, 3)
             ship = [ship_row, ship_column]
             self.ships.append(ship)
 
@@ -31,19 +31,31 @@ class PlayerBoard:
         Generates an empty player board
         """
 
-        column = [".",".",".","."]
+        column = [".", ".", ".", "."]
         
         for index in range(4):
-            self.board.append(column)
+            new_col = column.copy()
+            self.board.append(new_col)
     
-
+    def add_ships(self):
+        """ 
+        Adds the symbols for ships to the player board
+        """
+        for index in range(4):  
+            row = self.ships[index][0]
+            column = self.ships[index][1]
+            self.board[row][column] = "@"
+           
 
 
 
 player_board = PlayerBoard("player")
 player_board.generate_ships()
 player_board.generate_board()
+player_board.add_ships()
 print(player_board.ships)
-print(player_board.board)
+for index in range(4):
+    print(player_board.board[index])
+    print("\n")
 
 
