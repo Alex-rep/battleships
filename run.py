@@ -57,14 +57,37 @@ def roll_guess():
     result = [row, column]
     return result
 
+def get_guess():
+    """ 
+    Retrieves a guess from the player
+    """
+    print("Guess a row: \n")
+    row = input()
+    print("Guess a column: \n")
+    column = input()
+    
+    result = [row, column]
+    return result
+
+def print_board(player_board):
+    """ 
+    Prints the board for the specified player
+    """
+    for index in range(4):
+    print(player_board.board[index])
+    print("\n")
 
 player_board = PlayerBoard("player")
 player_board.generate_ships()
 player_board.generate_board()
+
+cpu_board = PlayerBoard("CPU")
+cpu_board.generate_ships()
+cpu_board.generate_board()
+
 player_board.add_ships()
-print(player_board.ships)
-for index in range(4):
-    print(player_board.board[index])
-    print("\n")
+
+
+
 
 
