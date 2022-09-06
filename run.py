@@ -7,25 +7,15 @@ class PlayerBoard:
     board = []
     ships = []
 
-    def __init__(self, name, ship_list):
+    def __init__(self, name, ship_list, board):
         """
         Constructs the object and inserts the board owner's name
         """
 
         self.player_name = name
         self.ships = ship_list
+        self.board = board
     
-
-    def generate_board(self):
-        """ 
-        Generates an empty player board
-        """
-
-        column = [".", ".", ".", "."]
-        
-        for index in range(4):
-            new_col = column.copy()
-            self.board.append(new_col)
     
     def add_ships(self):
         """ 
@@ -36,6 +26,20 @@ class PlayerBoard:
             column = self.ships[index][1]
             self.board[row][column] = "@"
            
+def generate_board():
+    """ 
+    Generates an empty player board
+    """
+
+    column = [".", ".", ".", "."]
+    board = []
+
+    for index in range(4):
+        new_col = column.copy()
+        board.append(new_col)
+
+    return board
+
 def generate_ships():
     """ 
     Generates four couples of integers between 0 and 4 that
@@ -83,11 +87,10 @@ def print_board(player_board):
         print(player_board.board[index])
         print("\n")
 
-player_board = PlayerBoard("player", generate_ships())
-player_board.generate_board()
 
-cpu_board = PlayerBoard("CPU", generate_ships())
-cpu_board.generate_board()
+player_board = PlayerBoard("player", generate_ships(), generate_board())
+
+cpu_board = PlayerBoard("CPU", generate_ships(), generate_board())
 
 player_board.add_ships()
 cpu_board.add_ships()
@@ -95,22 +98,10 @@ cpu_board.add_ships()
 print(player_board.ships)
 print(cpu_board.ships)
 
-#for index in range(4):
+print_board(player_board)
+print_board(cpu_board)
 
-    #print("Player's board: \n")
-    #print_board(player_board)
-    #print("CPU's board: \n")
-    #print_board(cpu_board)
-    #print(cpu_board.ships)
 
-    #guess = get_guess()
-
-    #for index in range(4):
-        
-        #if guess[0] == cpu_board.ships[index][0] and guess[1] == cpu_board.ships[index][1]:
-         #   print("It's a hit! \n")
-          #  player_board.score += 1
-           # break
 
 
 
