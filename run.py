@@ -46,7 +46,16 @@ class PlayerBoard:
             column = self.ships[index][1]
             self.board[row][column] = "@"
            
+def roll_guess(): 
+    """ 
+    Generates a couple of integers, guesses
+    a position on the board
+    """
 
+    row = random.randint(0, 3)
+    column = random.randint(0.3)
+    result = [row, column]
+    return result
 
 
 player_board = PlayerBoard("player")
