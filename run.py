@@ -104,6 +104,10 @@ def evaluate_guess(board, guess):
     """
     for index in range(4):
 
+        if board.board[guess[0]][guess[1]] == "*":
+
+            break
+
         if guess[0] == board.ships[index][0] and guess[1] == board.ships[index][1]:
 
             board.board[guess[0]][guess[1]] = "*"
@@ -124,6 +128,7 @@ def main_game_loop(player_board, cpu_board):
 
     while True:
 
+        print(f"\nThe score is {cpu_board.score} for you and {player_board.score} for the CPU.\n")
         print("Player's Board: \n")
         print_board(player_board)
 
@@ -138,16 +143,14 @@ def main_game_loop(player_board, cpu_board):
 
         evaluate_guess(player_board, cpu_guess)
 
-        print(f"The score is {cpu_board.score} for you and {player_board.score} for the CPU")
-
         if player_board.score == 4 or cpu_board.score == 4:
 
             if player_board.score == 4:
-                print("CPU wins!\n")
+                print("\nCPU wins!\n")
                 break
 
             elif cpu_board.score == 4:
-                print("You win!\n")
+                print("\nYou win!\n")
                 break
 
 
