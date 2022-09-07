@@ -11,7 +11,7 @@ class PlayerBoard:
     board = []
     ships = []
 
-    def __init__(self, name, ship_list, board):
+    def __init__(self, name, ship_list, board, score):
         """
         Constructs the object and inserts the board owner's name
         """
@@ -19,6 +19,7 @@ class PlayerBoard:
         self.player_name = name
         self.ships = ship_list
         self.board = board
+        self.score = score
 
     def add_ships(self):
         """
@@ -104,34 +105,65 @@ def evaluate_guess(board, guess):
     for index in range(4):
 
         if guess[0] == board.ships[index][0] and guess[1] == board.ships[index][1]:
-            print("it's a hit!\n")
+
             board.board[guess[0]][guess[1]] = "*"
+            board.score += 1
             break
+
         else:
 
-            print("It's a miss! \n")
             board.board[guess[0]][guess[1]] = "X"
-            break
 
 
-player_board = PlayerBoard("player", generate_ships(), generate_board())
+def main_game_loop(player_board, cpu_board):
+    """
+    Main Game Loop. The game keeps looping, asking for guesses to the player 
+    and taking guesses from the CPU. The game ends when the player or the CPU
+    achieve a score of 4.
+    """
 
-cpu_board = PlayerBoard("CPU", generate_ships(), generate_board())
+    while True:
 
-player_board.add_ships()
-cpu_board.add_ships()
+        print("Player's Board: \n")
+        print_board(player_board)
 
-print(player_board.ships)
-print(cpu_board.ships)
+        print("CPU's Board: \n")
+        print_board(cpu_board)
 
-for index in range(4):
+        guess = get_guess()
 
-    print("Player's Board: \n")
-    print_board(player_board)
+        evaluate_guess(cpu_board, guess)
 
-    print("CPU's Board: \n")
-    print_board(cpu_board)
+        cpu_guess = roll_guess()
 
-    guess = get_guess()
+        evaluate_guess(player_board, cpu_guess)
 
-    evaluate_guess(cpu_board, guess)
+        print(f"The score is {cpu_board.score} for you and {player_board.score} for the CPU")
+
+        if player_board.score == 4 or cpu_board.score == 4:
+
+            if player_board.score == 4:
+                print("CPU wins!\n")
+                break
+
+            elif cpu_board.score == 4:
+                print("You win!\n")
+                break
+
+
+def main():
+    """
+    The main program function. generates boards and ships for 
+    all players and the starts the main game loop.
+    """
+
+    player_board = PlayerBoard("player", generate_ships(), generate_board(), 0)
+
+    cpu_board = PlayerBoard("CPU", generate_ships(), generate_board(), 0)
+
+    player_board.add_ships()
+
+    main_game_loop(player_board, cpu_board)
+
+
+main()
