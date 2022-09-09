@@ -79,10 +79,44 @@ def get_guess():
     """
     Retrieves a guess from the player
     """
-    print("Guess a row: \n")
-    row = input()
-    print("Guess a column: \n")
-    column = input()
+
+    while True: 
+
+        print("Guess a row between 1 and 4: \n")
+        row = input()
+
+        if row.isnumeric() == True:
+
+            if int(row) >= 1 and int(row) <= 4: 
+
+                break
+
+            else:
+
+                print("Your number is not between 1 and 4! retry.\n")
+
+        else:
+
+            print("Error: You did not input a number.\n")
+
+    while True: 
+
+        print("Guess a column between 1 and 4: \n")
+        column = input()
+
+        if column.isnumeric() == True:
+
+            if int(column) >= 1 and int(column) <= 4:
+
+                break
+
+            else:
+
+                print("Your number is not between 1 and 4! retry.\n")
+
+        else:
+
+            print("Error: You did not input a number.\n")
 
     result = [int(row) - 1, int(column) - 1]
     return result
