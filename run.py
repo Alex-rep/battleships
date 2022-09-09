@@ -80,14 +80,14 @@ def get_guess():
     Retrieves a guess from the player
     """
 
-    while True: 
+    while True:
 
         print("Guess a row between 1 and 4: \n")
         row = input()
 
-        if row.isnumeric() == True:
+        if row.isnumeric() is True:
 
-            if int(row) >= 1 and int(row) <= 4: 
+            if int(row) >= 1 and int(row) <= 4:
 
                 break
 
@@ -99,12 +99,12 @@ def get_guess():
 
             print("Error: You did not input a number.\n")
 
-    while True: 
+    while True:
 
         print("Guess a column between 1 and 4: \n")
         column = input()
 
-        if column.isnumeric() == True:
+        if column.isnumeric() is True:
 
             if int(column) >= 1 and int(column) <= 4:
 
@@ -155,7 +155,7 @@ def evaluate_guess(board, guess):
 
 def main_game_loop(player_board, cpu_board):
     """
-    Main Game Loop. The game keeps looping, asking for guesses to the player 
+    Main Game Loop. The game keeps looping, asking for guesses to the player
     and taking guesses from the CPU. The game ends when the player or the CPU
     achieve a score of 4.
     """
@@ -190,7 +190,7 @@ def main_game_loop(player_board, cpu_board):
 
 def main():
     """
-    The main program function. generates boards and ships for 
+    The main program function. generates boards and ships for
     all players and the starts the main game loop.
     """
 
