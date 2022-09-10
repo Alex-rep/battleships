@@ -127,7 +127,9 @@ def print_board(player_board):
     Prints the board for the specified player
     """
     for index in range(4):
-        print(player_board.board[index])
+        row = str(player_board.board[index]).replace(',', '')
+        row = row.replace('[', '').replace(']', '')
+        print(f"[ {row} ]")
         print("\n")
 
 
@@ -191,7 +193,7 @@ def main_game_loop(player_board, cpu_board):
 def main():
     """
     The main program function. generates boards and ships for
-    all players and the starts the main game loop.
+    all players and then starts the main game loop.
     """
 
     player_board = PlayerBoard("player", generate_ships(), generate_board(), 0)
@@ -203,4 +205,5 @@ def main():
     main_game_loop(player_board, cpu_board)
 
 
-main()
+if __name__ == "__main__":
+    main()
