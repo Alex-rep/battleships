@@ -202,7 +202,7 @@ def main():
 
     player_board.add_ships()
 
-    print("Welcome to Battleships! Choose a row and a column to guess where the enemy ships are.")
+    print("Welcome to Battleships!\n Choose a row and a column to guess where the enemy ships are.\n")
 
     main_game_loop(player_board, cpu_board)
 
